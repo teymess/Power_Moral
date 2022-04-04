@@ -1,0 +1,58 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block content %}
+<div id="main">
+    <p>
+      <br>
+        Welcome,<br>
+
+        Thank you for participating in this experiment.<br><br>
+
+        If you read these rules carefully and choose wisely, you can earn a <b>bonus of up to €5.00.</b><br>
+        The task consists of a game that involves other participants.<br><br>
+
+        Completing this task will take about 10 minutes and it is important that you pay close attention during this time so that you do not spoil the task for you and the other participants.<br>
+        If you have any questions please feel free to reach out to the experimentator. <br><br>
+
+        The task has three stages.<br><br>
+    </p>
+    <img src="{% static 'Introduction.jpg' %}"; align="center"/>
+    <p>
+      <br>
+        <b>First</b>, you take a small <b>quiz</b> about the game. <br><br>
+
+        <b>Then</b> you are matched with another participant and the game is played.<br><br>
+
+        <b>Finally</b>, you are asked to fill out a short <b>survey.</b><br><br>
+
+
+    </p>
+
+</div>
+
+{% next_button %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+
+
+
+
+{% endblock %}

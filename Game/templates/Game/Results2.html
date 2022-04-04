@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Final Results
+{% endblock %}
+
+{% block content %}
+
+  Thank you for participating in this experiment. <br><br>
+    You earned <b>{{tokens}} tokens.</b> <br>
+    In your group, {{countcheat}} teams cheated and therefore the exchange rate per token is 1 to €{{exchangerate}}.<br>
+    In the survey, {{moral}} participants said that complying was the morally right thing to do. <br>
+    {% if treatment1 == 1 %}
+        Your deduction from the game is €{{groupdeduction}}. <br>
+    {% endif %}<br>
+    Therefore, your final payoff is: <b>{{payoff}}.</b><br><br>
+
+    It consists of the show-up fee of {{fee}}, the game-payoff of €{{gamepayoff}}
+    {% if treatment1 == 1 %}
+       , the deduction of €{{groupdeduction}},
+    {% endif %}
+    and the bonus from the survey of €{{bonus}}.<br><br>
+
+    Please remain seated until the experimentator calls your seat number to collect your reward.
+
+
+
+
+<br><br>
+
+
+{% endblock %}
+
+

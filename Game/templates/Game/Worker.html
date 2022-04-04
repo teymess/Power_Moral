@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Decision
+{% endblock %}
+
+{% block content %}
+<div id="main">
+    <img src="{% static 'Game.PNG' %}"; align="center"/><br><br>
+    Welcome to the game. You are matched with another participant, your co-player. Complying or cheating will determine the payoff for your team and affect the payoff of 9 other teams.<br><br>
+
+    Note that there is only one round of the game, so think carefully about what you choose.<br><br>
+
+                {% if treatment1 == 0 %}
+                   {% if treatment2 == 0 %}
+                        • <b>You are the worker.</b><br>
+                        • Your co-player is the manager and chooses an action for your team.<br>
+                        • You will learn whether your team cheats or complies on the next screen.<br>
+                    {%else%}
+                        • <b>You are the worker.</b><br>
+                        • Your co-player is the manager and chooses an action for your team.<br>
+                        • You will learn whether your team cheats or complies on the next screen.<br>
+                        • Then, you have the opportunity to send a feedback message to your manager.<br>
+                    {% endif %}
+                {%else%}
+                    {% if treatment2 == 0 %}
+                        • <b>You are the worker.</b><br>
+                        • Your co-player is the manager and chooses an action for your team.<br>
+                        • You will learn whether your team shall cheat or comply on the next screen.<br>
+                        • Then, you have the opportunity to veto the managers choice. The veto implies that your team complies but $0.10 will be deducted from your and your co-player's payoff.<br>
+                        • Then, you have the opportunity to send a feedback message to your manager.<br>
+
+                    {%else%}
+                        • <b>You are the worker.</b><br>
+                        • You and your co-player have to choose between complying and cheating at the same time. <br>
+                        • If you choose the same action as your co-player, it will be implemented.<br>
+                        • If you choose a different action, your team complies and €{{cost}} will be deducted from your and your co-player's payoff.<br>
+                        • After choosing, you can observe what the manager chose and then send a feedback message.<br><br>
+                        {% formfield player.worker_decision %}
+                    {% endif %}
+                {% endif %}
+
+        <br>
+            Remember:<br>
+            •   The base exchange rate is 1 token = €{{base}}.<br>
+            •	Complying yields 3 tokens for your team, the exchange rate for all teams stays the same.<br>
+            •	Cheating yields 5 tokens for your team, but the exchange rate for all teams drops by €{{deduction}} per token.<br>
+
+        <br><br>
+        <b>This is the dilemma: Cheating increases the payoff of your team, but it decreases the payoff of everybody.</b>
+        <br><br>
+
+</div>
+    {% next_button %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+
+

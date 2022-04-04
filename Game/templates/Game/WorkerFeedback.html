@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Decision
+{% endblock %}
+
+{% block content %}
+<div id="main">
+                    <img src="{% static 'Game.PNG' %}"; align="center"/><br><br>
+                    Here is what the manager chose for your team:<br><br>
+                    {% if mdecision == 0 %}
+                         <b>•	Comply</b><br>
+                            {% if treatment1 == 0 %}
+                            This means your teams complies.<br><br>
+                            {% endif %}
+                    {%else%}
+                        <b>•	Cheat</b><br><br>
+                            {% if treatment1 == 0 %}
+                            This means your teams cheats.<br><br>
+                            {% endif %}
+                    {% endif %}
+
+
+                    {% if treatment1 == 0 %}
+                        {% if treatment2 == 0 %}
+                        {%else%}
+                        {% formfield group.worker_feedback %}
+                        {% endif %}
+                    {%else%}
+                        {% if treatment2 == 0 %}
+                            {% if mdecision == 1 %}
+                            {% formfield group.worker_veto %}
+                            {% endif %}
+                        {% formfield group.worker_feedback %}
+                        {%else%}
+                        {% formfield group.worker_feedback %}
+                        {% endif %}
+                    {% endif %}
+
+                     <br>
+
+</div>
+    {% next_button %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+
+

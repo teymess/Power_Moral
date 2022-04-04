@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Question 2
+{% endblock %}
+<! This is a html-comment>
+<! The building blocks of our pages are HTML. You can find more info here: https://www.w3schools.com/html/html_intro.asp
+
+
+{% block content %}
+<div id="main">
+        <img src="{% static 'Quiz.PNG' %}"; align="center"/>
+
+        <br>
+        Welcome to second question.
+        <br><br>
+        Consider the following statement and identify whether it is true or false. <br>
+        The answers will not influence your payoff or your teams decision in any way.<br><br>
+
+
+        <b>Question 2:</b> <br>
+                {% if treatment1 == 0 %}
+                      If you are randomly chosen to be the manager, you will make the decision whether your team complies or cheats.
+                {%else%}
+                    {% if treatment2 == 0 %}
+                      If the worker decides to veto the managers decision, your team will comply and {{cost}}EUR are deducted from your payment.
+                    {%else%}
+                      If the worker decides cheat and the manager decides to comply, your team complies and {{cost}}EUR are deducted from your payment.
+                    {% endif %}
+                {% endif %}<br>
+       <br>
+        {% formfield player.test2 %}
+        <br>
+</div>
+    {% next_button %}
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}

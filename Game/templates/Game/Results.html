@@ -1,0 +1,57 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Game Results
+{% endblock %}
+
+{% block content %}
+
+<br><br>
+{% if groupdecision == 0 %}
+    Your team complied and receives a payoff of <b>{{tokens}} tokens.</b> <br><br>
+    The exchange rate of tokens to EUR depends on the actions of your team, and the actions of 9 other teams in this experiment. <br>
+{%else%}
+    Your team cheated and receives a payoff of <b>{{tokens}} tokens.</b> <br><br>
+    The exchange rate of tokens to EUR depends on the actions of your team, and the actions of 9 other teams in this experiment. <br>
+{% endif %}
+<br>
+
+                    {% if treatment1 == 1 %}
+                        {% if treatment2 == 0 %}
+                            {% if wveto == 0 %}
+                                As the worker did not veto your teams decision, nothing will be deducted from your payoff.
+                            {% endif %}
+                            {% if wveto == 1 %}
+                                The worker vetoed your teams decision decision, therefore €{{cost}} are deducted from your payoff.
+                            {% endif %}
+                            <br><br>
+                        {%else%}
+                            {% if mdecision == wdecision %}
+                            Your co-player chose the same action as you, nothing will be deducted from your payoff.
+                            {% else %}
+                            Your co-player did not choose the same action as you, therefore €{{cost}} are deducted from your payoff.
+                            {% endif %}
+                            <br><br>
+                        {% endif %}
+                    {% endif %}
+<br><br>
+    {% next_button %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+

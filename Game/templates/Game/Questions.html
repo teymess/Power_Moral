@@ -1,0 +1,58 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Survey Part 1
+{% endblock %}
+
+<! We use the same questionnaire for control and treatment group>
+{% block content %}
+<div id="main">
+        <img src="{% static 'Survey.PNG' %}"; align="center"/><br><br>
+    <p>
+        Thank you for completing the game. We now ask you to complete a short survey, which consists of two parts.
+    <br><br>
+
+
+
+    <b>Question 1:</b><br>
+    There are 9 other teams in your group.<br>
+    What do you think - how many of the 10 teams cheated? <br>
+    (You get an additional payment of €{{bonus}} when your guess is correct)
+    {% formfield player.qcheater %}
+
+    <br><br>
+    <b>Question 2:</b><br>
+    What do you think is the morally right thing to do?
+    {% formfield player.moral %}
+
+    <br><br>
+    <b>Question 3:</b><br>
+    What share of participants of the 10 teams (20 participants) in your group think that complying is the morally right thing to do? <br>
+    (You get an additional payment of €{{bonus}} when your guess is correct).<br><br>
+    {% formfield player.qgroupmorals %}
+
+    <br><br>
+</div>
+
+    {% next_button %}
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+
+

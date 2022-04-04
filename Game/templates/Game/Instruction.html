@@ -1,0 +1,72 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Rules
+{% endblock %}
+{% block content %}
+<div id="main">
+        You will be asked to take a decision in a dilemma. Here are the rules. Read them carefully, they will be part of the quiz.<br><br>
+
+        You and another participant are matched in a team. One of you will be in the role of a "manager" and the other will be a "worker". <br>
+        The chance that you will be a "manager" or a "worker" is 50/50, it will be randomly decided. <br><br>
+
+                {% if treatment1 == 0 %}
+                   {% if treatment2 == 0 %}
+                     •	By default, teams comply with regulations.<br>
+                     •	However, the "manager" in each team can choose to cheat. Complying or cheating will determine the payoff for each team.<br>
+                     •	The "worker” will observe which action the "manager" has chosen.<br>
+                    {%else%}
+                     •	By default, teams comply with regulations.<br>
+                     •	However, the "manager" in each team can choose to cheat. Complying or cheating will determine the payoff for each team.<br>
+                     •	The "worker" will observe which action the "manager" has chosen.<br>
+                     •	Afterwards, the "worker" can send a feedback message to the manager. The worker can either say "I like your choice", or "I don't like your choice", or send no message.
+                    {% endif %}
+                {%else%}
+                    {% if treatment2 == 0 %}
+                     •	By default, teams comply with regulations.<br>
+                     •	However, the "manager" in each team can choose to cheat. Complying or cheating will determine the payoff for each team.<br>
+                     •	The "worker" will observe which action the "manager" has chosen.<br>
+                     •	The "worker" can then veto that decision. Vetoing the proposed decision means that the team complies but €{{cost}} will be deducted from the team's payoff.<br>
+                     •	After choosing to veto or not, the "worker" can send a feedback message to the manager. The worker can either say "I like your choice", or "I don't like your choice", or send no message.
+
+                    {%else%}
+                     •	By default, teams comply with regulations.<br>
+                     •	However, the "manager" and the "worker" of each team can choose to cheat. Complying or cheating will determine the payoff for each team.<br>
+                     •  When both "manager" and "worker" choose to cheat, the team will cheat. If both "manager" and "worker" choose to comply, the team will comply. If one chooses to cheat while the other chooses to comply, the team complies but €{{cost}} will be deducted from the team's payoff.<br>
+                     •	After choosing, and observing what the "manager" chose, the "worker" can send a feedback message to the "manager". The worker can either say "I like your choice", or "I don't like your choice", or send no message.
+
+                    {% endif %}
+                {% endif %}
+        <br><br>
+        The payoff is calculated in tokens. The exchange rate of tokens to euro depends on the actions of your team, and the actions of 10 other teams in this experiment. The base exchange rate is 1 token = €{{base}}.
+        <br><br>
+        • <b>Complying yields {{comply}} tokens</b> for you and {{comply}} tokens for your co-player, the exchange rate stays the same.<br>
+        • <b>Cheating yields {{cheat}} tokens</b>, but the exchange rate for you and 10 other teams in this experiment is decreased by <b>€{{deduction}} per token.</b><br><br>
+
+        Here are some examples:<br>
+        •	If every team complies, <b>1 token = €{{base}}.</b> All participants receive 3 tokens that are worth €3 in total. This maximizes payoffs for all teams.<br>
+        •	If every team cheats, the exchange rate is decreased to <b>1 token = €0.5.</b> All participants receive 5 tokens that are worth €2.5 in total.<br>
+        •	If your team complies, but all 9 other teams cheat, the exchange rate is decreased to <b>1 token = €0.55.</b> You and your co-player receive 3 tokens that are worth €1.65 in total, all other participants receive 5 tokens that are worth €2.75 in total.<br>
+        •	If your team cheats, but all other teams comply, the exchange rate is <b>1 token = €0.95.</b> You and your co-player receive 5 tokens that are worth €4.75 in total, all other participants receive 3 tokens that are worth €2.85 in total.
+        <br><br>
+        <b>This is the dilemma: Cheating increases the payoff of your team, but it decreases the payoff of everybody.</b>
+        <br><br>
+
+</div>
+    {% next_button %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}

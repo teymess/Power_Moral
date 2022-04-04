@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Quiz
+{% endblock %}
+<! This is a html-comment>
+<! The building blocks of our pages are HTML. You can find more info here: https://www.w3schools.com/html/html_intro.asp
+p indicates a text, br is equal to enter and div is the main block >
+
+{% block content %}
+<div id="main">
+        <img src="{% static 'Quiz.PNG' %}"; align="center"/>
+
+        <br>
+        Welcome to the quiz.
+        <br><br>
+        Consider the following statement and identify whether it is true or false. <br>
+        The answers will not influence your payoff or your teams decision in any way.<br>  <br>
+
+
+
+        <b>Question 1:</b> <br>
+            Your team has decided to comply and so did 7 out of nine other teams. So, in total two teams decided to cheat.<br>
+            Therefore you earn 5 tokens and the exchange rate is 1 token = 1EUR. <br>   <br>
+
+        {% formfield player.test1 %}
+
+</div>
+    {% next_button %}
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Survey Part 2
+{% endblock %}
+
+
+{% block content %}
+<div id="main">
+    <br>
+        <img src="{% static 'Survey.PNG' %}"; align="center"/><br><br>
+    <p>
+
+    <br><br>
+
+    <br><br>
+    <b>Question 4:</b>
+        {% formfield player.age %}
+    <br><br>
+        <b>Question 5:</b><br>
+        {% formfield player.gender %}
+    <br><br>
+        <b>Question 6:</b><br>
+        {% formfield player.education %}
+    <br><br>
+         <b>Question 7:</b><br>
+        {% formfield player.experience %}
+    <br><br>
+        <b>Question 8:</b><br>
+        {% formfield player.relationship %}
+    <br><br>
+        <b>Question 9:</b><br>
+        {% formfield player.children %}
+    <br><br>
+        <b>Question 10:</b><br>
+        How do you see yourself: Are you in general a person who takes risk (10) or do you try to avoid risks (0)? Please self-grade your choice (0-10).
+        {% formfield player.risk %}
+    <br><br>
+</div>
+
+    {% next_button %}
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+
+

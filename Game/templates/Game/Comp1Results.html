@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Results Question 1
+{% endblock %}
+<! This is a html-comment>
+<! The building blocks of our pages are HTML. You can find more info here: https://www.w3schools.com/html/html_intro.asp
+p indicates a text, br is equal to enter and div is the main block >
+
+{% block content %}
+<div id="main">
+        <img src="{% static 'Quiz.PNG' %}"/>
+
+    <p>
+        {% if test1 == 1 %}
+            Your answer is <b>correct</b>. <br><br>
+            Explanation:<br>
+            • You earn <b>{{comply}} tokens</b> because your team chooses to comply. <br>
+            • The exchange rate per token drops to 0,90EUR as two teams cheat and thus the exchange rate decreases by <b>{{deduction}}EUR</b> twice. <br>
+        {% elif test1 == 0 %}
+            Your answer is <b>false</b>. <br><br>
+            <i>Please read the explanation carefully and make sure that you fully understand the setup, because the real game starts after this:</i> <br><br>
+            <b>Explanation</b>:<br>
+            • You earn <b>{{comply}} tokens</b> because your team chooses to comply. <br>
+            • The exchange rate per token drops to 0,90EUR as two teams cheat and thus the exchange rate decreases by <b>{{deduction}}EUR</b> twice. <br>
+        {%endif%}</b> <br>
+    </p>
+
+
+
+
+</div>
+    {% next_button %}
+
+
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Results Question 2
+{% endblock %}
+<! This is a html-comment>
+<! The building blocks of our pages are HTML. You can find more info here: https://www.w3schools.com/html/html_intro.asp
+p indicates a text, br is equal to enter and div is the main block >
+
+{% block content %}
+<div id="main">
+        <img src="{% static 'Quiz.PNG' %}"/>
+
+    <p>
+        {% if test2 == 1 %}
+            Your answer is <b>correct</b>. <br><br>
+            {% if treatment1 == 0 %}
+                Explanation:<br>
+                • It is the <b>manager</b>  who makes the decision for your team.
+            {%else%}
+               {% if treatment2 == 0 %}
+                 Explanation:<br>
+                  • If the manager decides to cheat, the worker has the opportunity to veto the decision. <br>
+                  • If the worker decides to veto the decision, {{cost}}EUR are deducted both players payments.<br>
+               {%else%}
+                Explanation:<br>
+                    • Both the <b>manager</b> and the <b>worker</b> make a decision at the beginning of the game.<br>
+                    • If both players make the same decision, this decision is implemented and nothing will be deducted from the payoff.<br>
+                    • If one chooses to cheat while the other chooses to comply, the team complies but {{cost}}EUR will be deducted from the team's payoff<br>
+                {% endif %}
+            {% endif %}
+
+        {%else%}
+            Your answer is <b>false</b>. <br><br>
+            <i>Please read the explanation carefully and make sure that you fully understand the setup, because the real game starts after this:</i> <br><br>
+            {% if treatment1 == 0 %}
+                Explanation:<br>
+                • It is the <b>manager</b>  who makes the decision for your team.
+            {%else%}
+               {% if treatment2 == 0 %}
+                 Explanation:<br>
+                  • If the manager decides to cheat, the worker has the opportunity to veto the decision. <br>
+                  • If the worker decides to veto the decision, {{cost}}EUR are deducted both players payments.<br>
+               {%else%}
+                Explanation:<br>
+                    • Both the <b>manager</b> and the <b>worker</b> make a decision at the beginning of the game.<br>
+                    • If both players make the same decision, the team executes that decision and nothing will be deducted from the payoff.<br>
+                    • If one chooses to cheat while the other chooses to comply, the team complies but {{cost}}EUR will be deducted from the team's payoff<br>
+                {% endif %}
+            {% endif %}
+        {%endif%}</> <br>
+    </p>
+
+
+
+
+</div>
+    {% next_button %}
+
+
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}

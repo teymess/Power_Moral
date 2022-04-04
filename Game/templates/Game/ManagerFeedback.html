@@ -1,0 +1,96 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Decision
+{% endblock %}
+
+{% block content %}
+    <div id="main">
+                    <img src="{% static 'Game.PNG' %}"; align="center"/><br><br>
+                    Here is what you, as manager, chose for your team:<br><br>
+                    {% if mdecision == 0 %}
+                         <b>•	Comply</b><br>
+                            {% if treatment1 == 0 %}
+                            This means your teams complies.<br><br>
+                            {% endif %}
+                    {%else%}
+                        <b>•	Cheat</b><br><br>
+                            {% if treatment1 == 0 %}
+                            This means your teams cheats.<br><br>
+                            {% endif %}
+                    {% endif %}
+
+
+                    {% if treatment1 == 0 %}
+                       {% if treatment2 == 1 %}
+                            Here is the feedback that the worker sent to you:<br>
+                            {% if wfeedback == 0 %}
+                                "I like your choice"
+                            {% elif wfeedback == 1 %}
+                                "I don't like your choice"
+                            {% else %}
+                                no message
+                            {% endif %}
+                       {% endif %}
+                    {%else%}
+                        {% if treatment2 == 0 %}
+                            {% if wveto == 0 %}
+                            The worker did not veto your decision, your team {% if mdecision == 0 %}complies.{% endif %}{% if mdecision == 1 %}cheats.{% endif %}<br><br>
+                            {% endif %}
+                            {% if wveto == 1 %}
+                            The worker vetoed your decision, therefore your team complies.<br><br>
+                            {% endif %}
+
+
+                            Here is the feedback that the worker sent to you:<br>
+                            {% if wfeedback == 0 %}
+                                "I like your choice"
+                            {% elif wfeedback == 1 %}
+                                "I don't like your choice"
+                            {% else %}
+                                no message
+                            {% endif %}
+
+                        {%else%}
+                            {% if mdecision == wdecision %}
+                            The worker chose the same action as you; your team {% if mdecision == 0 %}complies.{% endif %}{% if mdecision == 1 %}cheats.{% endif %}
+                            {% else %}
+                            The worker did not choose the same action as you, therefore your team complies.
+                            {% endif %}
+                                <br><br>
+                            Here is the feedback that the worker sent to you:<br>
+
+                            {% if wfeedback == 0 %}
+                                "I like your choice"
+                            {% elif wfeedback == 1 %}
+                                "I don't like your choice"
+                            {% else %}
+                                no message
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+
+
+        <br><br>
+    </div>
+    {% next_button %}
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 10) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+
