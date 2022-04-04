@@ -47,8 +47,8 @@ mturk_hit_settings = {
 
 
 SESSION_CONFIG_DEFAULTS= {
-    "real_world_currency_per_point": 0.001,
-    'participation_fee': 2.00,
+    "dollar_per_token": 1,
+    'participation_fee': 0.80,
      'doc': "",
     "mturk_hit_settings": mturk_hit_settings
 }
@@ -67,14 +67,6 @@ SESSION_CONFIGS = [
         treatment2 = 0
 
     ),
-    dict(name='voice',
-         display_name="voice",
-         num_demo_participants=2,
-         app_sequence=['Game'],
-         treatment1=0,
-         treatment2=1
-
-         ),
     dict(name='veto',
          display_name="veto",
          num_demo_participants=2,
@@ -89,7 +81,6 @@ SESSION_CONFIGS = [
          app_sequence=['Game'],
          treatment1=True,
          treatment2=True
-
          ),
 ]
 
