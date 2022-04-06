@@ -1,0 +1,77 @@
+{{ extends 'global/Page.html' }}
+{{ block title }}Rules of the game{{ endblock }}
+
+{{ block content }}
+
+<p>
+Please read the rules carefully, they will be part of the quiz.
+</p>
+
+<p>
+You and another MTurker are matched in a team. One of you will be in the role of a <b>"manager"</b> and the other will be a <b>"worker"</b>. 
+Whether you are the "manager" or the "worker" will be decided randomly.
+</p>
+
+<p>The dilemma works like this: </p>
+<ul>
+<li>There are <b>10 teams</b>: your team and 9 other teams. In each team, there is a manager and a worker.</li>
+<li>All 10 teams <b>share an account with 10 tokens</b>.</li>
+<li>Each team has to decide what happens with 1 of the 10 tokens.</li>
+<ul>
+<li>The team can <b>take</b> their token from the shared account.</li>
+<li>The team can <b>leave</b> their token in the shared account.</li>
+</ul>
+<li>After all teams have made their decision, all tokens that remain in the shared account 
+are <b>multiplied by 4</b> and then equally shared among all 10 teams.</li>
+<li><b>The bonus is the same for manager and worker: both earn $1 for each token of the team</b>.</li>
+</ul>
+
+<p>
+<b>This is the dilemma: leaving the token in the shared account is best for everybody but taking the token 
+increases the payoff for your own team at the expense of the other teams.</b>    
+</p>
+
+<p>This is how teams decide:</p>
+
+{{if player.treatment == "obs"}}
+<ul>
+<li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>   
+<li>The "worker" observes what the "manager" has chosen.</li>
+</ul>
+
+{{elif player.treatment == "veto"}}
+<ul>
+<li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>   
+<li>The "worker" observes what the "manager" has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
+<li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+<li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
+</ul>
+
+{{elif player.treatment == "sim"}}
+<ul>
+<li>The "manager" and the "worker" both choose between <b>take</b> and <b>leave</b>.</li>  
+<li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+<li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
+</ul>
+{{endif}}
+
+<p>Here are some examples:</p>
+<ul>
+<li>If all 10 teams choose <b>leave</b>, all 10 tokens remain in the shared account. Then, the 10 tokens are multiplied by 4, 
+increasing the shared account to 40 tokens. Hence, each of the 10 teams earns 4 tokens. 1 token = $1 for each team member so this 
+means that the manager receives $4 and the worker receives $4 as a bonus.</li>
+<li>If all 10 teams choose <b>take</b>, no tokens remain in the shared account. Hence, each of the 10 teams earns 1 token. 
+1 token = $1 for each team member so this means that the manager receives $1 and the worker receives $1 as a bonus. </li>
+<li>If your team chooses <b>leave</b>, but all 9 other teams choose <b>take</b>, 1 token remains in the shared account. 
+Then, this 1 token is multiplied by 4, increasing the shared account to 4 tokens. Hence, all 9 other teams earn 1.4 tokens 
+that are worth $1.40 for each of their players and your team earns 0.4 tokens. 1 token = $1 for each team member so this means 
+that the manager receives $0.40 and the worker receives $0.40 as a bonus.</li>
+<li>If your team chooses <b>take</b>, but all 9 other teams choose <b>leave</b>, 9 tokens remain in the shared account. 
+Then, the 9 tokens are multiplied by 4, increasing the shared account to 36 tokens. Hence, all 9 other teams earn 3.6 tokens 
+that are worth $3.60 for each of their players. Your team earns 4.6 tokens. 1 token = $1 for each team member so this means 
+that the manager receives $4.60 and the worker receives $4.60 as a bonus.</li>
+</ul>
+
+{{next_button}}
+
+{{ endblock }}
