@@ -47,7 +47,7 @@ mturk_hit_settings = {
 
 
 SESSION_CONFIG_DEFAULTS= {
-    "dollar_per_token": 1,
+    "real_world_currency_per_point": 1,
     'participation_fee': 0.80,
      'doc': "",
     "mturk_hit_settings": mturk_hit_settings
@@ -82,6 +82,11 @@ SESSION_CONFIGS = [
          treatment1=True,
          treatment2=True
          ),
+    dict(name='power_and_responsibility',
+         display_name='new_survey',
+         num_demo_participants=2,
+         app_sequence=['power_res']
+         )
 ]
 
 

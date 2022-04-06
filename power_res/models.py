@@ -27,7 +27,8 @@ class Constants(BaseConstants):
     token_per_group = 1
     reward = 0.8 # unconditional base reward if participant passes comprehension test
     bonus_per_token = 1 # token to USD exchange rate
-    max_bonus = int(token_per_group*bonus_per_token + (token_pool-1)*4/token_pool) # max possible bonus
+    belief_incentive = 0.4
+    max_bonus = round((token_per_group*bonus_per_token + (token_pool-1)*4/token_pool + 2*belief_incentive),1) # max possible bonus
     max_payoff = max_bonus + reward # max possible payoff
     completion_code = 937268 # MTurk completion code to return the HIT
 
@@ -42,4 +43,4 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    timeout_Introduction = models.BooleanField(initial=False)
