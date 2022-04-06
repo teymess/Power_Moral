@@ -31,9 +31,11 @@ class Instructions(Page):
 
 class Comprehension1(Page):
     form_model = 'player'
-    form_fields = ['test1', 'test2', 'test3', 'test4', 'test5']
+    form_fields = ['a1_test1', 'a1_test2', 'a1_test3', 'a1_test4', 'a1_test5']
 
     def before_next_page(self):
+        self.player.check_comprehension_a1()
+        self.player.check_comprehension_final()
         if self.timeout_happened:
             self.player.timeout_Comprehension1 = True
 
@@ -42,8 +44,7 @@ class Comprehension1(Page):
 
 class FailedAttempt1(Page):
     def is_displayed(self):
-        if not self.a1_comprehension:
-            return
+        return self.player.a1_comprehension == 0
 
     def before_next_page(self):
         if self.timeout_happened:
@@ -54,13 +55,14 @@ class FailedAttempt1(Page):
 
 class Comprehension2(Page):
     form_model = 'player'
-    form_fields = ['test1', 'test2', 'test3', 'test4', 'test5']
+    form_fields = ['a2_test1', 'a2_test2', 'a2_test3', 'a2_test4', 'a2_test5']
 
     def is_displayed(self):
-        if not self.a1_comprehension:
-            return
+        return self.player.a1_comprehension == 0
 
     def before_next_page(self):
+        self.player.check_comprehension_a2()
+        self.player.check_comprehension_final()
         if self.timeout_happened:
             self.player.timeout_Comprehension2 = True
 
@@ -69,8 +71,7 @@ class Comprehension2(Page):
 
 class FailedAttempt2(Page):
     def is_displayed(self):
-        if not self.a2_comprehension:
-            return
+        return self.player.a2_comprehension == 0
 
     def before_next_page(self):
         if self.timeout_happened:
@@ -81,13 +82,14 @@ class FailedAttempt2(Page):
 
 class Comprehension3(Page):
     form_model = 'player'
-    form_fields = ['test1', 'test2', 'test3', 'test4', 'test5']
+    form_fields = ['a3_test1', 'a3_test2', 'a3_test3', 'a3_test4', 'a3_test5']
 
     def is_displayed(self):
-        if not self.a2_comprehension:
-            return
+        return self.player.a2_comprehension == 0
 
     def before_next_page(self):
+        self.player.check_comprehension_a3()
+        self.player.check_comprehension_final()
         if self.timeout_happened:
             self.player.timeout_Comprehension3 = True
 
@@ -96,14 +98,12 @@ class Comprehension3(Page):
 
 class ComprehensionFailed(Page):
     def is_displayed(self):
-        if not self.a3_comprehension and not self.a2_comprehension and not self.a1_comprehension:
-            return
+        return self.player.full_comprehension == 0
 
 
 class ComprehensionSuccess(Page):
     def is_displayed(self):
-        if self.a1_comprehension or self.a2_comprehension or self.a3_comprehension:
-            return
+        return self.player.full_comprehension == 1
 
 
 page_sequence = [Introduction,

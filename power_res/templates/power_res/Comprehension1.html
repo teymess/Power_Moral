@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Quiz
+{% endblock %}
+
+{% block content %}
+<div id="main">
+        <img src="{% static 'Quiz.PNG' %}"; align="center"/>
+
+        <br>
+        Welcome to the quiz.
+        <br><br>
+        Please answer to the following questions. Each question has exactly one correct answer. <br>
+    <b>You have 3 attempts to finish the quiz. If you fail, you are not allowed to continue the task.</b> <br><br>
+
+
+
+        <b>Question 1:</b> <br>
+            How many members are in a team?
+
+        {% formfield player.a1_test1 %}
+
+        <b>Question 2:</b> <br>
+            How many teams are there in total?
+
+        {% formfield player.a1_test2 %}
+
+        <b>Question 3:</b> <br>
+            What are the two possible actions that a team can choose?
+
+        {% formfield player.a1_test3 %}
+
+        <b>Question 4:</b> <br>
+            How much is one token worth?
+
+        {% formfield player.a1_test4 %}
+
+        <b>Question 5:</b> <br>
+            Which statement is correct?
+
+        {% formfield player.a1_test5 %}
+
+</div>
+    {% next_button %}
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}

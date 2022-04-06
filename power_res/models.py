@@ -54,9 +54,10 @@ class Player(BasePlayer):
     treatment = models.StringField()
 
     # comprehension variable
-    a1_comprehension = models.BooleanField(initial=False)  # comprehension after first attempt
-    a2_comprehension = models.BooleanField(initial=False)  # comprehension after second attempt
-    a3_comprehension = models.BooleanField(initial=False)  # comprehension after third attempt
+    a1_comprehension = models.IntegerField(initial=0)  # comprehension after first attempt
+    a2_comprehension = models.IntegerField(initial=0)  # comprehension after second attempt
+    a3_comprehension = models.IntegerField(initial=0)  # comprehension after third attempt
+    full_comprehension = models.IntegerField(initial=0)  # comprehension after third attempt
 
 
     # comprehension questions
@@ -101,21 +102,34 @@ class Player(BasePlayer):
 
     def check_comprehension_a1(self):
         if self.a1_test1 != 1 or self.a1_test2 != 2 or self.a1_test3 != 1 or self.a1_test4 != 2 or self.a1_test5 != 2:
-            pass
+            return self.a1_comprehension
         else:
-            self.a1_comprehension = True
+            self.a1_comprehension = 1
+            self.a2_comprehension = 1
+            self.a3_comprehension = 1
+            return self.a1_comprehension
             
     def check_comprehension_a2(self):
         if self.a2_test1 != 1 or self.a2_test2 != 2 or self.a2_test3 != 1 or self.a2_test4 != 2 or self.a2_test5 != 2:
-            pass
+            return self.a2_comprehension
         else:
-            self.a2_comprehension = True
+            self.a2_comprehension = 1
+            self.a3_comprehension = 1
+            return self.a2_comprehension
             
     def check_comprehension_a3(self):
         if self.a3_test1 != 1 or self.a3_test2 != 2 or self.a3_test3 != 1 or self.a3_test4 != 2 or self.a3_test5 != 2:
-            pass
+            return self.a3_comprehension
         else:
-            self.a3_comprehension = True
+            self.a3_comprehension = 1
+            return self.a3_comprehension
+
+    def check_comprehension_final(self):
+        if self.a1_comprehension == 1 or self.a2_comprehension == 1 or self.a3_comprehension == 1:
+            self.full_comprehension = 1
+            return self.full_comprehension
+
+
 
     # timeout variables (will be set to 'true' if participants don't progress within 2 minutes)
     timeout_Introduction = models.BooleanField(initial=False)

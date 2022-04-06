@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div id="main">
+        <img src="{% static 'Quiz.PNG' %}"; align="center"/>
+
+        <br>
+
+        You did not answer all questions correctly. <br>
+        Please carefully read through the rules again and press “Next” for your second attempt.
+        <br><br>
+
+</div>
+    {% next_button %}
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+{% endblock %}
