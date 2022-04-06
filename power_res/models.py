@@ -11,6 +11,7 @@ from otree.api import (
 
 import numpy as np
 import math
+
 author = 'Tillmann Eymess'
 
 doc = """
@@ -19,18 +20,21 @@ doc = """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'pr_hit_v0' # appears in the link that participants click
+    name_in_url = 'pr_hit_v0'  # appears in the link that participants click
     players_per_group = 2
     num_rounds = 1
-    token_pool = 10 # since each team makes a decision for 1 token, this constant is also used for the number of teams in a collective
-    multiplicator = 4 # gives MPCR if divided by token_pool
+    token_pool = 10  # since each team makes a decision for 1 token, this constant is also used for the number of
+    # teams in a collective
+    multiplicator = 4  # gives MPCR if divided by token_pool
     token_per_group = 1
-    reward = 0.8 # unconditional base reward if participant passes comprehension test
-    bonus_per_token = 1 # token to USD exchange rate
+    reward = 0.8  # unconditional base reward if participant passes comprehension test
+    bonus_per_token = 1  # token to USD exchange rate
     belief_incentive = 0.4
-    max_bonus = round((token_per_group*bonus_per_token + (token_pool-1)*4/token_pool + 2*belief_incentive),1) # max possible bonus
-    max_payoff = max_bonus + reward # max possible payoff
-    completion_code = 937268 # MTurk completion code to return the HIT
+    max_bonus = round((token_per_group * bonus_per_token + (token_pool - 1) * 4 / token_pool + 2 * belief_incentive),
+                      1)  # max possible bonus
+    max_payoff = max_bonus + reward  # max possible payoff
+    completion_code = 937268  # MTurk completion code to return the HIT
+
 
 class Subsession(BaseSubsession):
 
@@ -40,6 +44,7 @@ class Subsession(BaseSubsession):
         for player in subsession.get_players():
             player.treatment = next(treatments)
 
+
 class Group(BaseGroup):
     pass
 
@@ -48,5 +53,75 @@ class Player(BasePlayer):
     # treatment variable
     treatment = models.StringField()
 
+    # comprehension variable
+    a1_comprehension = models.BooleanField(initial=False)  # comprehension after first attempt
+    a2_comprehension = models.BooleanField(initial=False)  # comprehension after second attempt
+    a3_comprehension = models.BooleanField(initial=False)  # comprehension after third attempt
+
+
+    # comprehension questions
+    a1_test1 = models.IntegerField(choices=[[1, 'Two members'], [2, 'Three members'], [3, 'Five members']],
+                                widget=widgets.RadioSelect(), label="")
+    a1_test2 = models.IntegerField(
+        choices=[[1, '5 teams (my team and 4 other teams)'], [2, '10 teams (my team and 9 other teams)'],
+                 [3, '15 teams (my team and 14 other teams)']], widget=widgets.RadioSelect(), label="")
+    a1_test3 = models.IntegerField(choices=[[1, 'leave or take'], [2, 'north or south'], [3, 'left or right']],
+                                widget=widgets.RadioSelect(), label="")
+    a1_test4 = models.IntegerField(choices=[[1, '1 token = $0.50'], [2, '1 token = $1'], [3, '1 token = $2']],
+                                widget=widgets.RadioSelect(), label="")
+    a1_test5 = models.IntegerField(
+        choices=[[1, 'The manager earns more than the worker'], [2, 'The manager earns the same amount as the worker'],
+                 [3, 'The manager earns less than the worker']], widget=widgets.RadioSelect(), label="")
+
+    a2_test1 = models.IntegerField(choices=[[1, 'Two members'], [2, 'Three members'], [3, 'Five members']],
+                                   widget=widgets.RadioSelect(), label="")
+    a2_test2 = models.IntegerField(
+        choices=[[1, '5 teams (my team and 4 other teams)'], [2, '10 teams (my team and 9 other teams)'],
+                 [3, '15 teams (my team and 14 other teams)']], widget=widgets.RadioSelect(), label="")
+    a2_test3 = models.IntegerField(choices=[[1, 'leave or take'], [2, 'north or south'], [3, 'left or right']],
+                                   widget=widgets.RadioSelect(), label="")
+    a2_test4 = models.IntegerField(choices=[[1, '1 token = $0.50'], [2, '1 token = $1'], [3, '1 token = $2']],
+                                   widget=widgets.RadioSelect(), label="")
+    a2_test5 = models.IntegerField(
+        choices=[[1, 'The manager earns more than the worker'], [2, 'The manager earns the same amount as the worker'],
+                 [3, 'The manager earns less than the worker']], widget=widgets.RadioSelect(), label="")
+
+    a3_test1 = models.IntegerField(choices=[[1, 'Two members'], [2, 'Three members'], [3, 'Five members']],
+                                   widget=widgets.RadioSelect(), label="")
+    a3_test2 = models.IntegerField(
+        choices=[[1, '5 teams (my team and 4 other teams)'], [2, '10 teams (my team and 9 other teams)'],
+                 [3, '15 teams (my team and 14 other teams)']], widget=widgets.RadioSelect(), label="")
+    a3_test3 = models.IntegerField(choices=[[1, 'leave or take'], [2, 'north or south'], [3, 'left or right']],
+                                   widget=widgets.RadioSelect(), label="")
+    a3_test4 = models.IntegerField(choices=[[1, '1 token = $0.50'], [2, '1 token = $1'], [3, '1 token = $2']],
+                                   widget=widgets.RadioSelect(), label="")
+    a3_test5 = models.IntegerField(
+        choices=[[1, 'The manager earns more than the worker'], [2, 'The manager earns the same amount as the worker'],
+                 [3, 'The manager earns less than the worker']], widget=widgets.RadioSelect(), label="")
+
+    def check_comprehension_a1(self):
+        if self.a1_test1 != 1 or self.a1_test2 != 2 or self.a1_test3 != 1 or self.a1_test4 != 2 or self.a1_test5 != 2:
+            pass
+        else:
+            self.a1_comprehension = True
+            
+    def check_comprehension_a2(self):
+        if self.a2_test1 != 1 or self.a2_test2 != 2 or self.a2_test3 != 1 or self.a2_test4 != 2 or self.a2_test5 != 2:
+            pass
+        else:
+            self.a2_comprehension = True
+            
+    def check_comprehension_a3(self):
+        if self.a3_test1 != 1 or self.a3_test2 != 2 or self.a3_test3 != 1 or self.a3_test4 != 2 or self.a3_test5 != 2:
+            pass
+        else:
+            self.a3_comprehension = True
+
     # timeout variables (will be set to 'true' if participants don't progress within 2 minutes)
     timeout_Introduction = models.BooleanField(initial=False)
+    timeout_Instructions = models.BooleanField(initial=False)
+    timeout_Comprehension1 = models.BooleanField(initial=False)
+    timeout_FailedAttempt1 = models.BooleanField(initial=False)
+    timeout_Comprehension2 = models.BooleanField(initial=False)
+    timeout_FailedAttempt2 = models.BooleanField(initial=False)
+    timeout_Comprehension3 = models.BooleanField(initial=False)
