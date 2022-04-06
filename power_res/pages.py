@@ -6,6 +6,7 @@ import time
 class Introduction(Page):
     def vars_for_template(self):
         return {'max_bonus': Constants.max_bonus,
+                'treatment': self.player.treatment
                 }
 
     def before_next_page(self):

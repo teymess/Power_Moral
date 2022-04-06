@@ -32,15 +32,21 @@ class Constants(BaseConstants):
     max_payoff = max_bonus + reward # max possible payoff
     completion_code = 937268 # MTurk completion code to return the HIT
 
-
-
 class Subsession(BaseSubsession):
-    pass
 
+    def creating_session(subsession):
+        import itertools
+        treatments = itertools.cycle(['obs', 'veto', 'sim'])
+        for player in subsession.get_players():
+            player.treatment = next(treatments)
 
 class Group(BaseGroup):
     pass
 
 
 class Player(BasePlayer):
+    # treatment variable
+    treatment = models.StringField()
+
+    # timeout variables (will be set to 'true' if participants don't progress within 2 minutes)
     timeout_Introduction = models.BooleanField(initial=False)
