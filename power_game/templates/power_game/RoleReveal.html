@@ -1,0 +1,124 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div id="main">
+    <img src="{% static 'Game.PNG' %}"; align="center"/><br><br>
+<p>
+    Welcome to the game.
+    Whether your team chooses <b>take</b> or <b>leave</b> will determine the payoff for your team and affect the payoff
+    of 9 other teams.
+    <br><br>
+
+    <b>There is only one round of the game</b>, so think carefully about what you choose.
+</p>
+
+<center>
+
+<p style="padding: 10px; border: 2px solid blue; font-size: 18px">
+    It was randomly decided that you are the <b>{% power_role %}</b> in your team.
+    </p>
+
+</center>
+
+    {{ if power_role_abb == 'man_con' }}
+
+    Next we match you with a worker to form a team. This may take a moment.
+    <br><br>
+
+    Then, you are asked to make a decision between <b>take</b> and <b>leave</b>.
+    <br>
+    Please click “Next” to proceed.
+
+    {{ elif power_role_abb == 'man_hi' }}
+
+    Next we match you with a worker to form a team. This may take a moment.
+    <br><br>
+
+    Then, you are asked to make a decision between <b>take</b> and <b>leave</b>.
+    <br><br>
+
+    <u>Note:</u> The worker that you are matched with comes from a selected pool.
+    In your case, <b>80%</b> of the workers think that the team <b>should leave</b> the token in the shared account.
+
+    <br><br>
+    Please click “Next” to proceed.
+
+    {{ elif power_role_abb == 'man_low' }}
+
+    Next we match you with a worker to form a team. This may take a moment.
+    <br><br>
+
+    Then, you are asked to make a decision between <b>take</b> and <b>leave</b>.
+    <br><br>
+
+    <u>Note:</u> The worker that you are matched with comes from a selected pool.
+    In your case, <b>80%</b> of the workers think that the team <b>should take</b> the token in the shared account.
+
+    <br><br>
+    Please click “Next” to proceed.
+
+    {{ elif power_role_abb == 'wor' }}
+
+        {{ if treatment == 'obs' or treatment == 'veto' }}
+
+            Next, the manager in your team will make a decision between <b>take</b> and <b>leave</b>. This may take a moment.
+            <br>
+            Please click “Next” to proceed.
+
+        {{ else }}
+
+        On the next page, we match you with a manager to form a team. This may take a moment.
+        <br><br>
+
+        Then, you are asked to make a decision between <b>take</b> and <b>leave</b>.
+        Please click “Next” to proceed.
+
+        {{ endif }}
+
+    {{ endif }}
+
+    {{ if treatment == 'obs' }}
+
+    <br><br>
+    << OBSERVE REMINDER BOX >>
+
+    {{ elif treatment == 'veto' }}
+
+    <br><br>
+    << VETO REMINDER BOX >>
+
+    {{ else }}
+
+    <br><br>
+    << SIMUL REMINDER BOX >>
+
+    {{ endif }}
+
+</div>
+
+{% next_button %}
+<style>
+     h2 {
+      font-size: 20px;
+     }
+
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}

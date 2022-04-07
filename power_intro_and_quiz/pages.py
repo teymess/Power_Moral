@@ -7,7 +7,7 @@ import time
 class Introduction(Page):
     def vars_for_template(self):
         return {'max_bonus': Constants.max_bonus,
-                'treatment': self.player.treatment
+                'treatment': self.participant.treatment
                 }
 
     def before_next_page(self):
@@ -19,14 +19,14 @@ class Introduction(Page):
 
 class Instructions(Page):
     def vars_for_template(self):
-        return {'treatment': self.player.treatment
+        return {'treatment': self.participant.treatment
                 }
 
     def before_next_page(self):
         if self.timeout_happened:
             self.player.timeout_Instructions = True
 
-    timeout_seconds = 120
+    timeout_seconds = 180  # only page with 3min timer (its a lot of content to read)
 
 
 class Comprehension1(Page):
@@ -96,14 +96,29 @@ class Comprehension3(Page):
     timeout_seconds = 120
 
 
-class ComprehensionFailed(Page):
-    def is_displayed(self):
-        return self.player.full_comprehension == 0
+class ComprehensionResult(Page):
+    form_model = 'player'
 
+    def get_form_fields(self):
+        if self.player.full_comprehension == 1:
+            return ['prior_pref']
+        else:
+            pass
 
-class ComprehensionSuccess(Page):
-    def is_displayed(self):
-        return self.player.full_comprehension == 1
+    def vars_for_template(self):
+        return {'result': self.player.full_comprehension
+                }
+
+    def app_after_this_page(self, upcoming_apps):
+        if self.player.full_comprehension == 0:
+            return upcoming_apps[-1]
+
+    def before_next_page(self):
+        if self.timeout_happened:
+            self.player.timeout_Introduction = True
+
+    timeout_seconds = 120
+
 
 
 page_sequence = [Introduction,
@@ -113,6 +128,5 @@ page_sequence = [Introduction,
                  Comprehension2,
                  FailedAttempt2,
                  Comprehension3,
-                 ComprehensionFailed,
-                 ComprehensionSuccess
+                 ComprehensionResult
                  ]

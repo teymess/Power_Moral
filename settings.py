@@ -53,6 +53,7 @@ SESSION_CONFIG_DEFAULTS= {
     "mturk_hit_settings": mturk_hit_settings
 }
 
+PARTICIPANT_FIELDS = ['treatment', 'comprehension']
 
 
 ##################################################
@@ -85,7 +86,7 @@ SESSION_CONFIGS = [
     dict(name='power_and_responsibility',
          display_name='new_survey',
          num_demo_participants=6,
-         app_sequence=['power_res']
+         app_sequence=['power_intro_and_quiz', 'power_game', 'power_survey', 'power_end']
          )
 ]
 

@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Please wait
+{% endblock %}
+
+{% block content %}
+<div id="main">
+
+    <p>Please wait, while we find you a match: <span id="time-left"></span> seconds left.</p>
+
+</div>
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+        let customTimerEle = document.getElementById('time-left');
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                customTimerEle.innerText = event.offset.totalSeconds;
+            });
+        });
+
+    </script>
+
+{% endblock %}

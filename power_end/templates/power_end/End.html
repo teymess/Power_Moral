@@ -1,0 +1,67 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    {{ if comprehension == 1 }}
+
+        Completed
+
+    {{ else }}
+
+        Quiz failed
+
+    {{ endif }}
+
+{% endblock %}
+
+{% block content %}
+<div id="main">
+<p>
+    {{ if comprehension == 1 }}
+
+    <b>Thank you for your participation</b>, your answers were transmitted.
+
+    <br><br>
+
+    <u>Remember:</u><br>
+    We will match your team with 9 other teams only <b>after all assignments of this HIT are completed.</b>
+    This may take a couple of days.
+    Once we have matched the teams, we will reward you with your <b>bonus</b>.
+
+    <br><br>
+
+    If you have any questions regarding this HIT, please contact Prof. Dr. Florian Diekert:
+    diekert@uni-heidelberg.de.
+
+    <br><br>
+
+    Please use the following code to return the HIT: <b>{{ completion_code }}</b>
+
+    <br><br>
+
+    After returning the HIT, you may safely close this browser window.
+
+    <br><br>
+
+    {{ else }}
+
+    Unfortunately, you did not pass the quiz. You were not able to answer the five questions correctly.
+    Passing the quiz within at most three attempts is a requirement for this task as explained in the HIT description.
+    <br><br>
+
+    To avoid the HIT being rejected, we suggest to return the HIT on Mechanical Turk.
+    <br>
+
+    Thank you for your participation.
+
+    <br><br>
+
+    If you have any questions regarding this HIT, please contact Prof. Dr. Florian Diekert:
+    diekert@uni-heidelberg.de.
+
+    {{ endif }}
+
+</p>
+
+</div>
+
+{% endblock %}

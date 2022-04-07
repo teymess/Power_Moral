@@ -20,8 +20,8 @@ doc = """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'pr_hit_v0'  # appears in the link that participants click
-    players_per_group = 2
+    name_in_url = 'intro_and_quiz'  # appears in the link that participants click
+    players_per_group = None
     num_rounds = 1
     token_pool = 10  # since each team makes a decision for 1 token, this constant is also used for the number of
     # teams in a collective
@@ -30,35 +30,32 @@ class Constants(BaseConstants):
     reward = 0.8  # unconditional base reward if participant passes comprehension test
     bonus_per_token = 1  # token to USD exchange rate
     belief_incentive = 0.4
-    max_bonus = round((token_per_group * bonus_per_token + (token_pool - 1) * 4 / token_pool + 2 * belief_incentive),
+    max_bonus = round((token_per_group * bonus_per_token + (token_pool - token_per_group) * multiplicator / token_pool + 2 * belief_incentive),
                       1)  # max possible bonus
     max_payoff = max_bonus + reward  # max possible payoff
-    completion_code = 937268  # MTurk completion code to return the HIT
-
 
 class Subsession(BaseSubsession):
-
     def creating_session(subsession):
         import itertools
         treatments = itertools.cycle(['obs', 'veto', 'sim'])
         for player in subsession.get_players():
-            player.treatment = next(treatments)
-
+            participant = player.participant
+            participant.treatment = next(treatments)
 
 class Group(BaseGroup):
     pass
 
 
 class Player(BasePlayer):
-    # treatment variable
+    # treatment and role variable
     treatment = models.StringField()
+    power_role = models.StringField()
 
     # comprehension variable
     a1_comprehension = models.IntegerField(initial=0)  # comprehension after first attempt
     a2_comprehension = models.IntegerField(initial=0)  # comprehension after second attempt
     a3_comprehension = models.IntegerField(initial=0)  # comprehension after third attempt
     full_comprehension = models.IntegerField(initial=0)  # comprehension after third attempt
-
 
     # comprehension questions
     a1_test1 = models.IntegerField(choices=[[1, 'Two members'], [2, 'Three members'], [3, 'Five members']],
@@ -108,7 +105,7 @@ class Player(BasePlayer):
             self.a2_comprehension = 1
             self.a3_comprehension = 1
             return self.a1_comprehension
-            
+
     def check_comprehension_a2(self):
         if self.a2_test1 != 1 or self.a2_test2 != 2 or self.a2_test3 != 1 or self.a2_test4 != 2 or self.a2_test5 != 2:
             return self.a2_comprehension
@@ -116,7 +113,7 @@ class Player(BasePlayer):
             self.a2_comprehension = 1
             self.a3_comprehension = 1
             return self.a2_comprehension
-            
+
     def check_comprehension_a3(self):
         if self.a3_test1 != 1 or self.a3_test2 != 2 or self.a3_test3 != 1 or self.a3_test4 != 2 or self.a3_test5 != 2:
             return self.a3_comprehension
@@ -127,7 +124,13 @@ class Player(BasePlayer):
     def check_comprehension_final(self):
         if self.a1_comprehension == 1 or self.a2_comprehension == 1 or self.a3_comprehension == 1:
             self.full_comprehension = 1
-            return self.full_comprehension
+        else:
+            self.full_comprehension = 0
+        self.participant.comprehension = self.full_comprehension
+        return self.full_comprehension
+
+    # preference question
+    prior_pref = models.IntegerField(choices=[[0, 'take'], [1, 'leave']], widget=widgets.RadioSelect(), label="")
 
 
 
@@ -139,3 +142,7 @@ class Player(BasePlayer):
     timeout_Comprehension2 = models.BooleanField(initial=False)
     timeout_FailedAttempt2 = models.BooleanField(initial=False)
     timeout_Comprehension3 = models.BooleanField(initial=False)
+    timeout_ComprehensionFailed = models.BooleanField(initial=False)
+    timeout_ComprehensionSuccess = models.BooleanField(initial=False)
+    timeout_DelayDisclaimer = models.BooleanField(initial=False)
+
