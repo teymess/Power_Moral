@@ -1,0 +1,27 @@
+{{ extends 'global/Page.html' }}
+{{ block title }}Grey Box{{ endblock }}
+
+{{ block content }}
+
+<div style="border: solid 2px black;background-color: #FFFFF">
+<b>Remember:</b>
+<ul>
+<li>There are <b>10 teams</b>. In each team, there is a manager and a worker.</li>
+<li>Each team has to decide what happens with 1 token.</li>
+<ul>
+<li>The team can <b>take</b> their token from the shared account.</li>
+<li>The team can <b>leave</b> their token in the shared account.</li>
+</ul>
+<li>After all teams have made their decision, all tokens that remain in the shared account 
+are <b>multiplied by 4</b> and then equally shared among all 10 teams.</li>
+<li><b>The bonus is the same for manager and worker: both earn $1 for each token of the team</b>.</li>
+</ul>
+
+<p><b>This is the dilemma: leaving the token in the shared account is best 
+for everybody but taking the token increases the payoff for your own team 
+at the expense of the other teams.</b></p>
+</div>
+
+{{ next_button }}
+
+{{ endblock }}

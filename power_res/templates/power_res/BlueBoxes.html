@@ -1,0 +1,36 @@
+{{ extends 'global/Page.html' }}
+{{ block title }}Bluebox{{ endblock }}
+
+{{ block content }}
+
+<p>{{if player.treatment == "obs"}}</p>
+<div style="border: solid 2px black; padding-top:10px; padding-left:5px; background-color: #FFFFF">
+<b>Remember</b>, this is how teams decide:
+<ul>
+<li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>
+<li>The "worker" observes what the "manager" has chosen.</li>
+</ul>
+</div>
+
+<p>{{elif player.treatment == "veto"}}</p>
+<div style="border: solid 2px black; padding-top:10px; padding-left:5px; background-color: #FFFFF">
+<b>Remember,</b> this is how teams decide:
+<ul>
+<li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>   
+<li>The "worker" observes what the "manager" has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
+<li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+<li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
+</ul></div>
+
+<p>{{elif player.treatment == "sim"}}</p>
+<div style="border: solid 2px black; padding-top:10px; padding-left:5px; background-color: #FFFFF">
+<b>Remember,</b> this is how teams decide:
+<ul>
+<li>The "manager" and the "worker" both choose between <b>take</b> and <b>leave</b>.</li>  
+<li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+<li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
+</ul></div>
+{{endif}}
+{{ next_button }}
+
+{{ endblock }}
