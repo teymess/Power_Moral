@@ -1,0 +1,99 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div id="main">
+        <img src="{% static 'Quiz.PNG' %}" ; align="center"/>
+
+        <br><br>
+
+        You did not answer all questions correctly. <br>
+	Please carefully <b>read through the rules again</b> and press “Next” for your second attempt.
+</div>
+        <br>
+
+        <div class="noteBoxes type3" style="display:flex; font-size: 14px">
+	 <div>
+		<b><u>Remember the rules:</u></b>
+        <ul>
+        <li>There are <b>10 teams</b>. In each team, there is a manager and a worker.</li>
+        <li>Each team has to decide what happens with 1 token.</li>
+        <ul>
+        <li>The team can <b>take</b> their token from the shared account.</li>
+        <li>The team can <b>leave</b> their token in the shared account.</li>
+        </ul>
+        <li>After all teams have made their decision, all tokens that remain in the shared account
+        are <b>multiplied by 4</b> and then equally shared among all 10 teams.</li>
+        <li><b>The bonus is the same for manager and worker: both earn $1 for each token of the team</b>.</li>
+        </ul>
+
+        <p><b>This is the dilemma: leaving the token in the shared account is best
+        for everybody but taking the token increases the payoff for your own team
+        at the expense of the other teams.</b></p>
+	</div>
+</div>
+
+        <br><br>
+
+
+    {% next_button %}
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+
+        .noteBoxes
+{
+	border: 1px solid;
+  	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.type1
+{
+	border-color: #E76F51;
+	background-color: rgba(231, 111, 81, 0.1);
+}
+
+.type2
+{
+	border-color: #2A9D8F;
+	background-color: rgba(42, 157, 143, 0.1);
+}
+
+.type3
+{
+	border-color: #0096C7;
+	background-color: rgba(0, 150, 199, 0.1);
+}
+
+.type4
+{
+	border-color: #D3D3D3;
+	background-color: rgba(192, 192, 192, 0.1);
+}
+
+.picture
+{
+	width: 15px;
+	padding-right: 10px;
+}
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+
+<style>
+        .mgslider-wrapper {
+            border-spacing: 10px;
+        }
+        .mgslider-limit {
+            width: 5%;
+            min-width: 75px;
+            height: 40px;
+            margin: 100px;
+            text-align: center;
+            background: #eee;
+            border: 1px solid #888;
+        }
+        .mgslider-limit, .mgslider-value {
+            font-variant-numeric: tabular-nums;
+        }
+        .mgslider-before {
+            height: 10px;
+            width: 100%;
+            background: #1e5bff;
+        }
+    </style>
+
+<div id="main">
+        <img src="{% static 'Survey.PNG' %}"; align="center"/><br><br>
+    <p>
+        <br>
+        <b>Question 6:</b><br>
+        There are 9 other teams that share an account with your team.<br>
+        What do you think - how many of the 9 other teams chose to <b>leave</b> their token in the shared account?<br>
+        (You get an additional payment of $0.40 when your guess is correct)
+        <br>
+            <p>Click the blue bar to reveal a slider.</p>
+            <div id="ee"></div>
+
+    <br>
+        <b>Question 7:</b>
+        {% formfield player.pnb %}
+    <br>
+        <b>Question 8:</b><br>
+        What share of participants think that <b>leaving</b> the token in the shared account is the morally right thing to do?<br>
+        (You get an additional payment of $0.40 when your guess is within 10 percentage points of the true value)
+    <br>
+            <p>Click the blue bar to reveal a slider.</p>
+            <div id="ne"></div>
+    <br>
+        <b>Question 9:</b><br>
+        {% formfield player.feedback %}
+</div>
+
+
+    <script src="{{ static 'mgslider.js' }}"></script>
+
+    <script>
+        $(document).ready(function (event) {
+            slider1 = new mgslider("ne", 0, 100, 1);
+            slider1.yourvalue = "You believe that";
+            slider1.print(document.getElementById("ne"));
+
+            slider2 = new mgslider("ee", 0, 9, 1);
+            slider2.yourvalue = "You believe that";
+            slider2.print(document.getElementById("ee"));
+
+            slider1.f2s = function (val) {
+            return val.toFixed(0) + '% of participants think that leave is the right thing to do.';
+            }
+
+            slider2.f2s = function (val) {
+            return val.toFixed(0) + ' of the other teams chose to leave their token in the shared account.';
+            }
+        });
+    </script>
+
+
+    {% next_button %}
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+
+    </style>
+
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}
+
+

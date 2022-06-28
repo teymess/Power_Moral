@@ -1,0 +1,46 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Your Team's Decision
+{% endblock %}
+
+{% block content %}
+<div id="main">
+    <p>
+      <br>
+        {% if treatment == 'obs' %}
+            {% if result == 0 %}
+                The <b>manager</b> in your team has chosen to <b>take</b> the token from the shared account.
+                <br><br>
+                <div class="noteBoxes type1" style="font-size: 18px">
+                Therefore, your team has chosen to <b>take</b> the token from the shared account.
+                </div>
+
+            {% elif result == 1 %}
+
+    </p>
+
+</div>
+
+{% next_button %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+
+
+
+
+{% endblock %}

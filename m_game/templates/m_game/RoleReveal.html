@@ -1,0 +1,158 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div id="main">
+    <img src="{% static 'Game.PNG' %}"; align="center"/><br><br>
+<p>
+    Welcome to the game.
+    Whether your team chooses <b>take</b> or <b>leave</b> will determine the payoff for your team and affect the payoff
+    of 9 other teams.
+    <br><br>
+
+    <b>There is only one round of the game</b>, so think carefully about what you choose.
+</p>
+</div>
+
+
+<div class="noteBoxes type1" style="font-size: 18px">
+    You are the <b>manager</b> of your team.
+</div>
+
+
+<div>
+
+    {% if power_role_abb == 'man_con' %}
+
+    You are asked to make a decision between <b>take</b> and <b>leave</b>.
+    <br>
+    Please click “Next” to proceed.
+
+    {% elif power_role_abb == 'man_hi' %}
+
+    You are asked to make a decision between <b>take</b> and <b>leave</b>.
+    <br><br>
+
+    <u>Note:</u> The worker that you are matched with comes from a selected pool.
+    In your case, <b>80%</b> of the workers think that the team <b>should leave</b> the token in the shared account.
+
+    <br><br>
+    Please click “Next” to proceed.
+
+    {% elif power_role_abb == 'man_low' %}
+
+    You are asked to make a decision between <b>take</b> and <b>leave</b>.
+    <br><br>
+
+    <u>Note:</u> The worker that you are matched with comes from a selected pool.
+    In your case, <b>80%</b> of the workers think that the team <b>should take</b> the token in the shared account.
+
+    <br><br>
+    Please click “Next” to proceed.
+
+    {% endif %}
+</div>
+<br>
+{% next_button %}
+<br>
+
+{% if treatment == 'obs' %}
+
+    <div class="noteBoxes type3" style="display:flex; font-size: 14px">
+        <div>
+		    <p><u><b>Remember</b>, this is how teams decide:</u></p>
+                <ul>
+                <li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>
+                <li>The "worker" observes what the "manager" has chosen.</li>
+                </ul>
+        </div>
+	</div>
+
+    {% elif treatment == 'veto' %}
+
+    <div class="noteBoxes type3" style="display:flex; font-size: 14px">
+        <div>
+            <p><u><b>Remember</b>, this is how teams decide:</u></p>
+                <ul>
+                <li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>
+                <li>The "worker" observes what the "manager" has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
+                <li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+                <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
+                </ul>
+        </div>
+	</div>
+
+    {% else %}
+
+    <div class="noteBoxes type3" style="display:flex; font-size: 14px">
+        <div>
+            <p><u><b>Remember</b>, this is how teams decide:</u></p>
+                <ul>
+                <li>The "manager" and the "worker" both choose between <b>take</b> and <b>leave</b>.</li>
+                <li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+                <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
+                </ul>
+        </div>
+	</div>
+
+    {% endif %}
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+
+        .noteBoxes
+{
+	border: 1px solid;
+  	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.type1
+{
+	border-color: #E76F51;
+	background-color: rgba(231, 111, 81, 0.1);
+}
+
+.type2
+{
+	border-color: #2A9D8F;
+	background-color: rgba(42, 157, 143, 0.1);
+}
+
+.type3
+{
+	border-color: #0096C7;
+	background-color: rgba(0, 150, 199, 0.1);
+}
+
+.type4
+{
+	border-color: #00B353;
+	background-color: rgba(0, 179, 83, 0.1);
+}
+
+.picture
+{
+	width: 15px;
+	padding-right: 10px;
+}
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}

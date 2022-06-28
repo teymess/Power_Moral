@@ -1,0 +1,40 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Game Completed
+{% endblock %}
+
+{% block content %}
+
+    <b>Thank you for making a decision.</b>
+    <br><br>
+
+    Remember, the number of tokens that you earn depends on the action of your team and the action of 9 other teams.
+    This involves a total of 20 MTurkers and collecting this many assignments takes some time.
+    <br>
+    After all involved players have completed their assignment, we will calculate the tokens for each team
+    and reward the payoff through a <b>bonus payment</b>.
+    <br><br>
+
+    Don't forget that you also earn a <b> reward of ${{reward}}0 for completing the HIT</b>.
+
+    <br><br>
+
+    Please hit <b>"Next"</b> to proceed with the last part of this HIT, a short <b>survey</b>.
+
+{% next_button %}
+
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}

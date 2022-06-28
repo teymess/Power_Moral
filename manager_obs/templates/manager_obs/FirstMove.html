@@ -1,0 +1,113 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Page title
+{% endblock %}
+
+{% block content %}
+
+<div id="main">
+    <img src="{% static 'Game.PNG' %}"; align="center"/><br><br>
+
+    {% if power_role_abb == 'man_con' %}
+
+    <b>You are the manager</b> in your team.
+
+    {% elif power_role_abb == 'man_hi' %}
+
+    <b>You are the manager</b> in your team.
+    <br><br>
+
+    <u>Remember:</u> The worker that you are matched with comes from a selected pool.
+    In your case, <b>80%</b> of the workers think that the team <b>should leave</b> the token in the shared account.
+
+    {% elif power_role_abb == 'man_low' %}
+
+    <b>You are the manager</b> in your team.
+    <br><br>
+
+    <u>Remember:</u> The worker that you are matched with comes from a selected pool.
+    In your case, <b>80%</b> of the workers think that the team <b>should take</b> the token in the shared account.
+
+    {% endif %}
+
+    <br><br>
+
+    You have to choose between <b>take</b> or <b>leave</b>.<br>
+    Afterwards, the worker can observe what you chose.
+
+    <br><br>
+
+    What do you choose?
+    {% formfield player.decision %}
+</div>
+
+    {% next_button %}
+
+    <div class="noteBoxes type3" style="display:flex; font-size: 14px">
+        <div>
+		    <p><u><b>Remember</b>, this is how teams decide:</u></p>
+                <ul>
+                <li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>
+                <li>The "worker" observes what the "manager" has chosen.</li>
+                </ul>
+        </div>
+	</div>
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+
+        .noteBoxes
+{
+	border: 1px solid;
+  	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.type1
+{
+	border-color: #E76F51;
+	background-color: rgba(231, 111, 81, 0.1);
+}
+
+.type2
+{
+	border-color: #2A9D8F;
+	background-color: rgba(42, 157, 143, 0.1);
+}
+
+.type3
+{
+	border-color: #0096C7;
+	background-color: rgba(0, 150, 199, 0.1);
+}
+
+.type4
+{
+	border-color: #00B353;
+	background-color: rgba(0, 179, 83, 0.1);
+}
+
+.picture
+{
+	width: 15px;
+	padding-right: 10px;
+}
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+

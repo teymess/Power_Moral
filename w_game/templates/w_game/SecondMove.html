@@ -1,0 +1,123 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Decision
+{% endblock %}
+
+{% block content %}
+
+<div id="main">
+    <img src="{% static 'Game.PNG' %}"; align="center"/><br><br>
+
+    {% if treatment == 'veto' %}
+
+        {% if manager_d == 0 %}
+        The manager in your team has chosen to <b>take</b> the token from the shared account.
+
+        {% elif manager_d == 1 %}
+        The manager in your team has chosen to <b>leave</b> the token in the shared account.
+
+        {% endif %}
+
+    {% elif treatment == 'sim' %}
+
+        You and the manager in your team have to choose between <b>take</b> or <b>leave</b>.
+        If you and the manager choose <b>take</b>, the team decision will be <b>take</b>.
+        If at least one of you chooses <b>leave</b>, the team decision will be <b>leave</b>.
+
+    {% endif %}
+
+    What do you choose?
+    {% formfield player.decision %}
+
+</div>
+
+    {% next_button %}
+
+    {% if treatment == 'veto' %}
+
+    <div class="noteBoxes type3" style="display:flex; font-size: 14px">
+        <div>
+            <p><u><b>Remember</b>, this is how teams decide:</u></p>
+                <ul>
+                <li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>
+                <li>The "worker" observes what the "manager" has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
+                <li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+                <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
+                </ul>
+        </div>
+	</div>
+
+    {% elif treatment == 'sim' %}
+
+    <div class="noteBoxes type3" style="display:flex; font-size: 14px">
+        <div>
+            <p><u><b>Remember</b>, this is how teams decide:</u></p>
+                <ul>
+                <li>The "manager" and the "worker" both choose between <b>take</b> and <b>leave</b>.</li>
+                <li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+                <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
+                </ul>
+        </div>
+	</div>
+
+    {% endif %}
+
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+
+        .noteBoxes
+{
+	border: 1px solid;
+  	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.type1
+{
+	border-color: #E76F51;
+	background-color: rgba(231, 111, 81, 0.1);
+}
+
+.type2
+{
+	border-color: #2A9D8F;
+	background-color: rgba(42, 157, 143, 0.1);
+}
+
+.type3
+{
+	border-color: #0096C7;
+	background-color: rgba(0, 150, 199, 0.1);
+}
+
+.type4
+{
+	border-color: #00B353;
+	background-color: rgba(0, 179, 83, 0.1);
+}
+
+.picture
+{
+	width: 15px;
+	padding-right: 10px;
+}
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+

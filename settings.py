@@ -1,5 +1,6 @@
 from os import environ
 
+
 #############################################
 ###########  DO NOT TOUCH ###################
 #############################################
@@ -53,7 +54,16 @@ SESSION_CONFIG_DEFAULTS= {
     "mturk_hit_settings": mturk_hit_settings
 }
 
-PARTICIPANT_FIELDS = ['treatment', 'comprehension']
+#  PARTICIPANT_FIELDS = ['treatment', 'comprehension', 'power_role', 'preference', 'partner_pref']
+SESSION_FIELDS = [
+    'take_type_matches_obs',
+    'leave_type_matches_obs',
+    'take_type_matches_veto',
+    'leave_type_matches_veto',
+    'take_type_matches_sim',
+    'leave_type_matches_sim'
+
+]
 
 
 ##################################################
@@ -66,7 +76,6 @@ SESSION_CONFIGS = [
         app_sequence=['Game'],
         treatment1 = 0,
         treatment2 = 0
-
     ),
     dict(name='veto',
          display_name="veto",
@@ -83,11 +92,23 @@ SESSION_CONFIGS = [
          treatment1=True,
          treatment2=True
          ),
-    dict(name='power_and_responsibility',
-         display_name='new_survey',
-         num_demo_participants=6,
-         app_sequence=['power_intro_and_quiz', 'power_game', 'power_survey', 'power_end']
+    dict(name='PR_M',
+         display_name='PR_manager',
+         num_demo_participants=3,
+         app_sequence=['quiz',
+                       'w_game',
+                       'survey',
+                       'end']
+         ),
+    dict(name='PR_W',
+         display_name='PR_worker',
+         num_demo_participants=9,
+         app_sequence=['quiz',
+                       'w_game',
+                       'survey',
+                       'end']
          )
+
 ]
 
 
@@ -109,7 +130,7 @@ ROOMS = []
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
-ADMIN_PASSWORD = environ.get('password ')
+ADMIN_PASSWORD = environ.get('password')
 
 DEMO_PAGE_INTRO_HTML = """ """
 
@@ -117,7 +138,9 @@ SECRET_KEY = 'gqu#5o1o$fci0cbu!9%*8$1obvpnm9&=w%*^z4nur4pb(dw!^p'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
+#  EXTENSION_APPS = ['leavable_wait_page']
 
 AWS_ACCESS_KEY_ID = environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY_ID = environ.get("AWS_SECRET_ACCESS_KEY_ID")
 #############################################
+

@@ -1,0 +1,57 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block content %}
+<div id="main">
+    <p>
+      <br>
+        Welcome, and thank you for accepting this HIT.<br><br>
+        The reward for completion of this HIT is <b>$0.80</b>.<br>
+
+        If you read these rules carefully and choose wisely, you can earn a <b>bonus of up to ${{max_bonus}}0.</b><br>
+        The task consists of a game that involves other MTurkers.<br><br>
+
+        Completing the task will take about 10 minutes and <b>it is important that you pay close attention</b> so that you do not spoil the task for you and the other participants.
+        <br><br>
+
+        After you read the instructions on the game's rules, the task has three stages.<br><br>
+    </p>
+    <img src="{% static 'Introduction.jpg' %}"; align="center"/>
+    <p>
+      <br>
+        First, you take a short <b>quiz</b> about the game. You can only continue with the task, if you pass the quiz successfully. <br><br>
+
+        Then you are matched into a team with another MTurker and the <b>game</b> is played.<br><br>
+
+        Finally, you are asked to fill out a short <b>survey.</b><br><br>
+
+
+    </p>
+
+</div>
+
+{% next_button %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+
+
+
+
+{% endblock %}

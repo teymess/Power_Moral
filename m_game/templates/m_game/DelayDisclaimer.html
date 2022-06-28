@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    Important
+{% endblock %}
+
+{% block content %}
+<div id="main">
+    <p>
+      <br>
+        <u>Before you start the game, please take note of the following information:</u><br><br>
+
+        As previously mentioned, your payment consists of a fixed <b>reward of $0.80</b> for successful completion of the HIT
+        and a <b>bonus</b> that depends on the decision of your team and on the decisions of 9 other teams,
+        each of which also have a manager and a worker.
+        This means that your <b>bonus</b> depends on the decisions of a total of 20 different MTurkers.
+
+        <br><br>
+
+        Collecting this many assignments will take some time.
+        Therefore, <b>we will match your team with 9 other teams only after all assignments of this HIT are completed</b>.
+        This may take a couple of days. Once we have matched the teams, we will calculate the payoffs and reward you with your <b>bonus</b>.
+
+        <br><br>
+
+        To proceed to the <b>game</b>, please click "Next".
+
+    </p>
+
+</div>
+
+{% next_button %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+
+
+
+
+{% endblock %}

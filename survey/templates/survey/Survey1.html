@@ -1,0 +1,101 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+
+<style>
+        .mgslider-wrapper {
+            border-spacing: 10px;
+        }
+        .mgslider-limit {
+            width: 5%;
+            min-width: 75px;
+            height: 40px;
+            margin: 100px;
+            text-align: center;
+            background: #eee;
+            border: 1px solid #888;
+        }
+        .mgslider-limit, .mgslider-value {
+            font-variant-numeric: tabular-nums;
+        }
+        .mgslider-before {
+            height: 10px;
+            width: 100%;
+            background: #1e5bff;
+        }
+    </style>
+
+
+
+<div id="main">
+        <img src="{% static 'Survey.PNG' %}"; align="center"/><br><br>
+    <p>
+
+    <br><br>
+    <b>Question 1:</b>
+        {% formfield player.age %}
+    <br>
+        <b>Question 2:</b><br>
+        {% formfield player.gender %}
+    <br>
+        <b>Question 3:</b><br>
+        {% formfield player.education %}
+    <br>
+         <b>Question 4:</b> <br>
+        How do you see yourself in general:
+        <br>Are you a person who tries avoids risks (0) or do you take risks (10)?
+    <br>
+            <p>Click the blue bar to reveal a slider.</p>
+            <div id="risk"></div>
+
+    <br>
+        <b>Question 5:</b><br>
+        How do you see yourself in general:<br>
+        Are you a person who is willing to trust others not at all (0) or completely (0)?
+    <br>
+            <p>Click the blue bar to reveal a slider.</p>
+            <div id="trust"></div>
+
+
+    <script src="{{ static 'mgslider.js' }}"></script>
+
+    <script>
+        $(document).ready(function (event) {
+            slider1 = new mgslider("risk", 0, 10, 1);
+            slider1.print(document.getElementById("risk"));
+
+            slider2 = new mgslider("trust", 0, 10, 1);
+            slider2.print(document.getElementById("trust"));
+        });
+    </script>
+
+
+    {% next_button %}
+
+    <style>
+    .otree-timer {
+        display: none;
+    }
+
+    </style>
+
+    <script>
+    $(function () {
+        $('.otree-timer__time-left').on('update.countdown', function (event) {
+            if (event.offset.totalSeconds === 20) {
+                $('.otree-timer').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+
+
+
+
