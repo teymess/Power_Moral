@@ -70,28 +70,6 @@ SESSION_FIELDS = [
 ####### ENTER THE SESSIONS YOU WANT TO PLAY ######
 #################################################
 SESSION_CONFIGS = [
-    dict(name='observe',
-        display_name="observe",
-        num_demo_participants=2,
-        app_sequence=['Game'],
-        treatment1 = 0,
-        treatment2 = 0
-    ),
-    dict(name='veto',
-         display_name="veto",
-         num_demo_participants=2,
-         app_sequence=['Game'],
-         treatment1=True,
-         treatment2=False
-
-         ),
-    dict(name='symmetry',
-         display_name="symmetry",
-         num_demo_participants=2,
-         app_sequence=['Game'],
-         treatment1=True,
-         treatment2=True
-         ),
     dict(name='PR_M',
          display_name='PR_manager',
          num_demo_participants=3,
