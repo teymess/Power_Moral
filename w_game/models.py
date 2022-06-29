@@ -115,9 +115,9 @@ class Player(BasePlayer):
             self.result = self.manager_decision
 
         else:
-            if self.manager_decision == '1' and self.decision == '1':
-                self.result = '1'
-            else:
+            if self.manager_decision == '0' and self.decision == '0':
                 self.result = '0'
+            else:
+                self.result = '1'
 
 
