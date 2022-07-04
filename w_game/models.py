@@ -27,7 +27,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     reward = 0.80
-    MANAGER_FILE = 'manager_input.CSV'
+    MANAGER_FILE = 'manager_input.csv'
 
 class Subsession(BaseSubsession):
     def creating_session(subsession):
