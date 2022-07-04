@@ -43,13 +43,24 @@
                 {% endif %}
             {% endif %}
             {% if manager_d == '1' %}
-                <ul>
-                    <li>The <b>manager</b> in your team has chosen to <b>leave</b> the token in the shared account.</li>
-                        <li><b>You</b> have chosen to <b>leave</b> the token in the shared account.</li>
-                </ul>
-                <div class="noteBoxes type1" style="font-size: 18px">
-                    Therefore, your team will <b>leave</b> the token in the shared account.
-                </div>
+                {% if decision == 0 %}
+                    <ul>
+                            <li>The <b>manager</b> in your team has chosen to <b>leave</b> the token in the shared account.</li>
+                            <li><b>You</b> have chosen to <b>take</b> the token from the shared account.</li>
+                    </ul>
+                    <div class="noteBoxes type1" style="font-size: 18px">
+                        Therefore, your team will <b>leave</b> the token in the shared account.
+                    </div>
+                {% endif %}
+                {% if decision == 1 %}
+                    <ul>
+                            <li>The <b>manager</b> in your team has chosen to <b>leave</b> the token in the shared account.</li>
+                            <li><b>You</b> have chosen to <b>leave</b> the token in the shared account.</li>
+                    </ul>
+                    <div class="noteBoxes type1" style="font-size: 18px">
+                        Therefore, your team will <b>leave</b> the token in the shared account.
+                    </div>
+                {% endif %}
             {% endif %}
         {% endif %}
 

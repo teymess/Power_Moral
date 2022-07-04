@@ -11,7 +11,7 @@ Please read the rules carefully, they will be part of the quiz.
 </p>
 
 <p>
-You and another MTurker are matched in a team. One of you is in the role of a <b>"manager"</b> and the other MTurker will be a <b>"worker"</b>.
+You and another MTurker are matched in a team. One of you is in the role of a <b>manager</b> and the other MTurker will be a <b>worker</b>.
 </p>
 
 <p>The dilemma works like this: </p>
@@ -37,22 +37,22 @@ increases the payoff for your own team at the expense of the other teams.</b>
 
 {% if treatment == "obs" %}
 <ul>
-<li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>
-<li>The "worker" observes what the "manager" has chosen.</li>
+<li>The manager chooses between <b>take</b> and <b>leave</b>.</li>
+<li>The worker observes what the manager has chosen.</li>
 </ul>
 
 {% elif treatment == "veto" %}
 <ul>
-<li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>
-<li>The "worker" observes what the "manager" has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
-<li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+<li>The manager chooses between <b>take</b> and <b>leave</b>.</li>
+<li>The worker observes what the manager has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
+<li>If both manager and worker choose <b>take</b>, the team will take the token from the shared account.</li>
 <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
 </ul>
 
 {% elif treatment == "sim" %}
 <ul>
-<li>The "manager" and the "worker" both choose between <b>take</b> and <b>leave</b>.</li>
-<li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+<li>The manager and the worker both choose between <b>take</b> and <b>leave</b>.</li>
+<li>If both manager and worker choose <b>take</b>, the team will take the token from the shared account.</li>
 <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
 </ul>
 {% endif %}

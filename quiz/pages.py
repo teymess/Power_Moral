@@ -114,7 +114,8 @@ class ComprehensionResult(Page):
             return upcoming_apps[-1]
 
     def before_next_page(self):
-        self.participant.vars['preference'] = self.player.prior_pref
+        if self.player.full_comprehension != 0:
+            self.participant.vars['preference'] = self.player.prior_pref
 
         if self.timeout_happened:
             self.player.timeout_Introduction = True
