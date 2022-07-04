@@ -55,7 +55,7 @@ class Player(BasePlayer):
     decision = models.IntegerField(choices=[[0, 'take'], [1, 'leave']], widget=widgets.RadioSelect(), label="")
 
     def determine_partner(self):
-        if self.participant.vars['power_role'] == 'wor' or self.participant.vars['power_role'] == 'man_con':
+        if self.participant.vars['power_role'] == 'man_con':
             self.partner_pref = 99  # outside option that is never used
         elif self.participant.vars['power_role'] == 'man_hi':
             import random

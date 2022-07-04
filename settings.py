@@ -74,7 +74,7 @@ SESSION_CONFIGS = [
          display_name='PR_manager',
          num_demo_participants=3,
          app_sequence=['quiz',
-                       'w_game',
+                       'm_game',
                        'survey',
                        'end']
          ),
