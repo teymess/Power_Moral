@@ -100,7 +100,7 @@ class Player(BasePlayer):
     ee = models.IntegerField(
         min=0,
         max=9,
-        label="There are 9 other teams that share an account with your team. What do you think - how many of the 9 other teams chose to leave their token in the shared account? (You get an additional payment of $0.40 when your guess is correct)"
+        label="There are 9 other teams that share an account with your team. What do you think - how many of the 9 other teams chose to leave the token in the shared account? (You get an additional payment of $0.40 when your guess is correct)"
     )
 
     pnb = models.IntegerField(

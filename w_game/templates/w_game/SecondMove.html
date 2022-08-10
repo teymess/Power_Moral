@@ -13,17 +13,17 @@
     {% if treatment == 'veto' %}
 
         {% if manager_d == 0 %}
-        The manager in your team has chosen to <b>take</b> the token from the shared account.
+        Player 1 in your team has chosen to <b>take</b> the token from the shared account.
 
         {% elif manager_d == 1 %}
-        The manager in your team has chosen to <b>leave</b> the token in the shared account.
+        Player 1 in your team has chosen to <b>leave</b> the token in the shared account.
 
         {% endif %}
 
     {% elif treatment == 'sim' %}
 
-        You and the manager in your team have to choose between <b>take</b> or <b>leave</b>.
-        If you and the manager choose <b>take</b>, the team decision will be <b>take</b>.
+        You and player 1 in your team have to choose between <b>take</b> or <b>leave</b>.
+        If you and player 1 choose <b>take</b>, the team decision will be <b>take</b>.
         If at least one of you chooses <b>leave</b>, the team decision will be <b>leave</b>.
 
     {% endif %}
@@ -41,9 +41,9 @@
         <div>
             <p><u><b>Remember</b>, this is how teams decide:</u></p>
                 <ul>
-                <li>The "manager" chooses between <b>take</b> and <b>leave</b>.</li>
-                <li>The "worker" observes what the "manager" has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
-                <li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+                <li>Player 1 chooses between <b>take</b> and <b>leave</b>.</li>
+                <li>Player 2 observes what player 1 has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
+                <li>If both player 1 and player 2 choose <b>take</b>, the team will take the token from the shared account.</li>
                 <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
                 </ul>
         </div>
@@ -55,8 +55,8 @@
         <div>
             <p><u><b>Remember</b>, this is how teams decide:</u></p>
                 <ul>
-                <li>The "manager" and the "worker" both choose between <b>take</b> and <b>leave</b>.</li>
-                <li>If both "manager" and "worker" choose <b>take</b>, the team will take the token from the shared account.</li>
+                <li>Player 1 and player 2 both choose between <b>take</b> and <b>leave</b>.</li>
+                <li>If both player 1 and player 2 choose <b>take</b>, the team will take the token from the shared account.</li>
                 <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
                 </ul>
         </div>

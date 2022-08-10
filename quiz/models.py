@@ -68,8 +68,8 @@ class Player(BasePlayer):
     a1_test4 = models.IntegerField(choices=[[1, '1 token = $0.50'], [2, '1 token = $1'], [3, '1 token = $2']],
                                 widget=widgets.RadioSelect(), label="")
     a1_test5 = models.IntegerField(
-        choices=[[1, 'The manager earns more than the worker'], [2, 'The manager earns the same amount as the worker'],
-                 [3, 'The manager earns less than the worker']], widget=widgets.RadioSelect(), label="")
+        choices=[[1, 'Player 1 earns more than player 2'], [2, 'Player 1 earns the same amount as player 2'],
+                 [3, 'Player 1 earns less than player 2']], widget=widgets.RadioSelect(), label="")
 
     a2_test1 = models.IntegerField(choices=[[1, 'Two members'], [2, 'Three members'], [3, 'Five members']],
                                    widget=widgets.RadioSelect(), label="")
@@ -81,8 +81,8 @@ class Player(BasePlayer):
     a2_test4 = models.IntegerField(choices=[[1, '1 token = $0.50'], [2, '1 token = $1'], [3, '1 token = $2']],
                                    widget=widgets.RadioSelect(), label="")
     a2_test5 = models.IntegerField(
-        choices=[[1, 'The manager earns more than the worker'], [2, 'The manager earns the same amount as the worker'],
-                 [3, 'The manager earns less than the worker']], widget=widgets.RadioSelect(), label="")
+        choices=[[1, 'Player 1 earns more than player 2'], [2, 'Player 1 earns the same amount as player 2'],
+                 [3, 'Player 1 earns less than player 2']], widget=widgets.RadioSelect(), label="")
 
     a3_test1 = models.IntegerField(choices=[[1, 'Two members'], [2, 'Three members'], [3, 'Five members']],
                                    widget=widgets.RadioSelect(), label="")
@@ -94,8 +94,8 @@ class Player(BasePlayer):
     a3_test4 = models.IntegerField(choices=[[1, '1 token = $0.50'], [2, '1 token = $1'], [3, '1 token = $2']],
                                    widget=widgets.RadioSelect(), label="")
     a3_test5 = models.IntegerField(
-        choices=[[1, 'The manager earns more than the worker'], [2, 'The manager earns the same amount as the worker'],
-                 [3, 'The manager earns less than the worker']], widget=widgets.RadioSelect(), label="")
+        choices=[[1, 'Player 1 earns more than player 2'], [2, 'Player 1 earns the same amount as player 2'],
+                 [3, 'Player 1 earns less than player 2']], widget=widgets.RadioSelect(), label="")
 
     def check_comprehension_a1(self):
         if self.a1_test1 != 1 or self.a1_test2 != 2 or self.a1_test3 != 1 or self.a1_test4 != 2 or self.a1_test5 != 2:
@@ -130,7 +130,7 @@ class Player(BasePlayer):
         return self.full_comprehension
 
     # preference question
-    prior_pref = models.IntegerField(choices=[[0, 'take'], [1, 'leave']], widget=widgets.RadioSelect(), label="")
+    prior_pref = models.IntegerField(choices=[[0, 'take'], [1, 'leave']], label="")
 
 
 

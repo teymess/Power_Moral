@@ -27,8 +27,8 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def role_assignment(subsession):
-        import itertools
-        roles = itertools.cycle(['man_hi', 'man_con', 'man_low'])
+        import random
+        roles = random.choice(['man_hi', 'man_con', 'man_low'])
         for player in subsession.get_players():
             player.participant.vars['power_role'] = next(roles)
             player.power_role = player.participant.vars['power_role']

@@ -72,7 +72,7 @@ SESSION_FIELDS = [
 SESSION_CONFIGS = [
     dict(name='PR_M',
          display_name='PR_manager',
-         num_demo_participants=3,
+         num_demo_participants=30,
          app_sequence=['quiz',
                        'm_game',
                        'survey',
@@ -80,7 +80,7 @@ SESSION_CONFIGS = [
          ),
     dict(name='PR_W',
          display_name='PR_worker',
-         num_demo_participants=9,
+         num_demo_participants=30,
          app_sequence=['quiz',
                        'w_game',
                        'survey',

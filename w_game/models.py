@@ -13,6 +13,7 @@ import numpy as np
 import math
 import csv
 import itertools
+import random
 
 
 author = 'Tillmann Eymess'
@@ -60,6 +61,13 @@ class Subsession(BaseSubsession):
                     take_type_matches_sim.append(data)
                 if row['partner_pref'] == '1' and row['treatment'] == 'sim':
                     leave_type_matches_sim.append(data)
+
+                if row['partner_pref'] == '99' and row['treatment'] == 'obs':
+                    random.choice([take_type_matches_obs.append(data), leave_type_matches_obs.append(data)])
+                if row['partner_pref'] == '99' and row['treatment'] == 'veto':
+                    random.choice([take_type_matches_veto.append(data), leave_type_matches_veto.append(data)])
+                if row['partner_pref'] == '99' and row['treatment'] == 'sim':
+                    random.choice([take_type_matches_sim.append(data), leave_type_matches_sim.append(data)])
 
         # make sure you have added these variables in settings!
         subsession.session.vars['take_type_matches_obs'] = itertools.cycle(take_type_matches_obs)
