@@ -46,7 +46,7 @@ class Subsession(BaseSubsession):
             reader = csv.DictReader(f)
             for row in reader:
                 # get the data from each line into a dictionary
-                data = {'id': row['id'], 'treatment': row['treatment'], 'partner_pref': row['partner_pref'], 'manager_decision': row['manager_decision']}
+                data = {'id': row['p1_id'], 'treatment': row['treatment'], 'partner_pref': row['partner_pref'], 'manager_decision': row['p1_decision']}
 
                 # separate the data into several lists, one for each type
                 if row['partner_pref'] == '0' and row['treatment'] == 'obs':
@@ -123,7 +123,7 @@ class Player(BasePlayer):
             self.result = self.manager_decision
 
         else:
-            if self.manager_decision == '0' and self.decision == '0':
+            if self.manager_decision == '0' and self.decision == 0:
                 self.result = '0'
             else:
                 self.result = '1'

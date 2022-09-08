@@ -11,6 +11,7 @@ from otree.api import (
 
 import numpy as np
 import math
+import random
 
 author = 'Tillmann Eymess'
 
@@ -27,10 +28,8 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def role_assignment(subsession):
-        import random
-        roles = random.choice(['man_hi', 'man_con', 'man_low'])
         for player in subsession.get_players():
-            player.participant.vars['power_role'] = next(roles)
+            player.participant.vars['power_role'] = random.choice(['man_hi', 'man_con', 'man_low'])
             player.power_role = player.participant.vars['power_role']
 
 

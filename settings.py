@@ -11,7 +11,7 @@ mturk_hit_settings = {
         'description': 'Academic decision making experiment',
         'frame_height':500,
         'template': 'global/mturk_template.html',
-        'minutes_allotted_per_assignment':40,
+        'minutes_allotted_per_assignment':100,
         'expiration_hours':2*24,
         'qualification_requirements':[
             # Only US
@@ -72,6 +72,7 @@ SESSION_FIELDS = [
 SESSION_CONFIGS = [
     dict(name='PR_M',
          display_name='PR_manager',
+         use_browser_bots=False,
          num_demo_participants=30,
          app_sequence=['quiz',
                        'm_game',

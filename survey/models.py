@@ -82,13 +82,9 @@ class Player(BasePlayer):
 
 
     risk = models.IntegerField(
-        #widget=widgets.RadioSelectHorizontal,
-        #choices=[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
-        #label="How do you see yourself in general: Are you a person who takes risk (10) or do you try to avoid risks (0)?",
-        #blank=False,
-        min=0,
-        max=10,
-        initial=5
+        widget=widgets.RadioSelectHorizontal,
+        choices=[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+        label="How do you see yourself in general: Are you a person who takes risk (10) or do you try to avoid risks (0)?",
     )
 
     trust = models.IntegerField(
