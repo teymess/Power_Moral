@@ -11,21 +11,23 @@ Please read the rules carefully, they will be part of the quiz.
 </p>
 
 <p>
-You and another MTurker are matched in a team. One of you is <b>player 1</b> and the other will be a <b>player 2</b>.
+You and another MTurker are matched in a team. One of you is <b>player 1</b> and the other is <b>player 2</b>.
+    Both players get the same bonus.
 </p>
 
-<p>The dilemma works like this: </p>
+<p>This is how the bonus is determined: </p>
 <ul>
 <li>There are <b>10 teams</b>: your team and 9 other teams. In each team, there is a player 1 and a player 2.</li>
 <li>All 10 teams <b>share an account with 10 tokens</b>.</li>
+    <li><b>1 token = $1.</b></li>
 <li>Each team has to decide what happens with 1 of the 10 tokens.</li>
     <ul>
-    <li>The team can <b>take</b> the token from the shared account.</li>
+    <li>The team can <b>take</b> the token from the shared account into the team's pocket.</li>
     <li>The team can <b>leave</b> the token in the shared account.</li>
     </ul>
 <li>After all teams have made their decision, all tokens that remain in the shared account
-are <b>multiplied by 4</b> and then equally shared among all 10 teams.</li>
-<li><b>The bonus is the same for player 1 and player 2: both earn $1 for each token of the team</b>.</li>
+are <b>multiplied by 4</b> and then distributed to all 10 teams in equal shares.</li>
+<li>Your bonus depends on what your team gets from the shared account plus the token your team might have pocketed.</li>
 </ul>
 
 <p>
@@ -38,13 +40,13 @@ increases the payoff for your own team at the expense of the other teams.</b>
 {% if treatment == "obs" %}
 <ul>
 <li>Player 1 chooses between <b>take</b> and <b>leave</b>.</li>
-<li>Player 2 observes what player 1 has chosen.</li>
+<li>Player 2 observes what player 1 chose.</li>
 </ul>
 
 {% elif treatment == "veto" %}
 <ul>
 <li>Player 1 chooses between <b>take</b> and <b>leave</b>.</li>
-<li>Player 2 observes what player 1 has chosen and then chooses between <b>take</b> and <b>leave</b>.</li>
+<li>Player 2 observes what player 1 chose and then chooses between <b>take</b> and <b>leave</b>.</li>
 <li>If both player 1 and player 2 choose <b>take</b>, the team will take the token from the shared account.</li>
 <li>If one or both players choose <b>leave</b>, the team will leave the token in the shared account.</li>
 </ul>
@@ -61,17 +63,17 @@ increases the payoff for your own team at the expense of the other teams.</b>
 <ul>
 <li>If all 10 teams choose <b>leave</b>, all 10 tokens remain in the shared account. Then, the 10 tokens are multiplied by 4,
 increasing the shared account to 40 tokens. Hence, each of the 10 teams earns 4 tokens. 1 token = $1 for each team member so this
-means that player 1 receives $4 and player 2 receives $4 as a bonus.</li>
+means that each player gets $4.</li>
 <li>If all 10 teams choose <b>take</b>, no tokens remain in the shared account. Hence, each of the 10 teams earns 1 token.
-1 token = $1 for each team member so this means that player 1 receives $1 and player 2 receives $1 as a bonus. </li>
+1 token = $1 for each team member so this means that each player gets $1. </li>
 <li>If your team chooses <b>leave</b>, but all 9 other teams choose <b>take</b>, 1 token remains in the shared account.
 Then, this 1 token is multiplied by 4, increasing the shared account to 4 tokens. Hence, all 9 other teams earn 1.4 tokens
 that are worth $1.40 for each of their players and your team earns 0.4 tokens. 1 token = $1 for each team member so this means
-that player 1 receives $0.40 and player 2 receives $0.40 as a bonus.</li>
+that each player gets $0.40.</li>
 <li>If your team chooses <b>take</b>, but all 9 other teams choose <b>leave</b>, 9 tokens remain in the shared account.
 Then, the 9 tokens are multiplied by 4, increasing the shared account to 36 tokens. Hence, all 9 other teams earn 3.6 tokens
 that are worth $3.60 for each of their players. Your team earns 4.6 tokens. 1 token = $1 for each team member so this means
-that player 1 receives $4.60 and player 2 receives $4.60 as a bonus.</li>
+that each player gets $4.60.</li>
 </ul>
 
 </div>
