@@ -48,8 +48,6 @@ class SecondMove(Page):
         if self.timeout_happened:
             self.player.timeout_FirstMove = True
 
-    timeout_seconds = 120
-
 
 class Result(Page):
     def vars_for_template(self):

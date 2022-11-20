@@ -26,7 +26,7 @@ class Instructions(Page):
         if self.timeout_happened:
             self.player.timeout_Instructions = True
 
-    timeout_seconds = 180  # only page with 3min timer (its a lot of content to read)
+    timeout_seconds = 300  # only page with 5min timer (its a lot of content to read)
 
 
 class Comprehension1(Page):
