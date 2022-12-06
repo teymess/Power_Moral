@@ -33,7 +33,7 @@ mturk_hit_settings = {
                 'IntegerValues': [95]
             },
             {
-                'QualificationTypeId': "3QTDD8KTCH8YXOC3UKIAHES2WZIHVD",
+                'QualificationTypeId': "3UYIJTD33A9QONTRJ7SALABC1TFI3D",
                 'Comparator': "DoesNotExist",
             },
         ]
