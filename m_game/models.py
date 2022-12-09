@@ -27,10 +27,7 @@ class Constants(BaseConstants):
     reward = 0.80
 
 class Subsession(BaseSubsession):
-    def role_assignment(subsession):
-        for player in subsession.get_players():
-            player.participant.vars['power_role'] = random.choice(['man_hi', 'man_con', 'man_low'])
-            player.power_role = player.participant.vars['power_role']
+    pass
 
 
 class Group(BaseGroup):
@@ -38,6 +35,9 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    def role_assignment(self):
+        self.participant.vars['power_role'] = random.choice(['man_hi', 'man_con', 'man_low'])
+        self.power_role = self.participant.vars['power_role']
     # role variable
     power_role = models.StringField()
 

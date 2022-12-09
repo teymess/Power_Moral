@@ -6,7 +6,7 @@ import time
 
 class DelayDisclaimer(Page):
     def before_next_page(self):
-        self.subsession.role_assignment()
+        self.player.role_assignment()
         if self.timeout_happened:
             self.player.timeout_DelayDisclaimer = True
 
