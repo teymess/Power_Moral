@@ -41,6 +41,7 @@ class Subsession(BaseSubsession):
         take_type_matches_sim = []
         leave_type_matches_sim = []
 
+        # test
         # open the first mover file, read it line by line
         with open(Constants.MANAGER_FILE, 'r') as f:
             reader = csv.DictReader(f)

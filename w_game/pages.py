@@ -28,6 +28,7 @@ class RoleReveal(Page):
         if self.timeout_happened:
             self.player.timeout_RoleReveal = True
 
+
     timeout_seconds = 120
 
 class SecondMove(Page):
